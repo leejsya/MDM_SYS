@@ -21,7 +21,7 @@ class Patient(models.Model):
 
 class MedicalImage(models.Model):
     img_id = models.IntegerField(primary_key=True)
-    patient = models.ForeignKey(Patient, on_delete=models.CASCADE)
+    patient = models.ForeignKey(Patient, on_delete=models.CASCADE, related_name='images')
     image = models.ImageField(upload_to='xrays/%Y/%m/%d/')
     taken_time = models.DateTimeField(auto_now_add=True)
     description = models.TextField()

@@ -1,6 +1,6 @@
 from rest_framework import generics
 from .models import Patient, MedicalImage
-from .serializers import PatientSerializer, MedicalImageSerializer
+from .serializers import PatientSerializer, MedicalImageSerializer, PatientDetailSerializer
 # Create your views here.
 class PatientsAPI(generics.ListCreateAPIView):
     queryset = Patient.objects.all()
@@ -20,3 +20,8 @@ class MedicalImageAPI(generics.RetrieveUpdateDestroyAPIView):
     queryset = MedicalImage
     serializer_class = MedicalImageSerializer
     lookup_field = 'img_id'
+
+class PatientDetailView(generics.RetrieveAPIView):
+    queryset = Patient.objects.all()
+    serializer_class = PatientDetailSerializer
+    lookup_field = 'pid'

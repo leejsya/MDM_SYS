@@ -20,3 +20,15 @@ class MedicalImageSerializer(serializers.ModelSerializer):
                   'taken_time',
                   'description',
         ]
+
+class PatientDetailSerializer(serializers.ModelSerializer):
+    images = MedicalImageSerializer(many=True, read_only=True)
+
+    class Meta:
+        model = Patient
+        fields = ['pid',
+                  'name',
+                  'gender',
+                  'age',
+                  'registered_time',
+                  'images']
