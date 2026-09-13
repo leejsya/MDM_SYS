@@ -1,6 +1,7 @@
 from rest_framework import generics
 from .models import Patient, MedicalImage
 from .serializers import PatientSerializer, MedicalImageSerializer, PatientDetailSerializer
+from rest_framework import mixins
 # Create your views here.
 class PatientsAPI(generics.ListCreateAPIView):
     queryset = Patient.objects.all()
@@ -12,9 +13,15 @@ class PatientAPI(generics.RetrieveUpdateDestroyAPIView):
     lookup_field = 'pid'
 
 
-class MedicalImagesAPI(generics.ListCreateAPIView):
+class MedicalImagesAPI(mixins.ListModelMixin, mixins.CreateModelMixin, generics.GenericAPIView):
     queryset = MedicalImage.objects.all()
     serializer_class = MedicalImageSerializer
+
+    def get(self, request, *args, **kwargs):
+        return self.list(request, *args, **kwargs)
+
+    def post(self, request, *args, **kwargs):
+        return self.create(request, *args, **kwargs)
 
 class MedicalImageAPI(generics.RetrieveUpdateDestroyAPIView):
     queryset = MedicalImage

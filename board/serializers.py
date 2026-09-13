@@ -22,7 +22,7 @@ class MedicalImageSerializer(serializers.ModelSerializer):
         ]
 
 class PatientDetailSerializer(serializers.ModelSerializer):
-    images = MedicalImageSerializer(many=True, read_only=True)
+    images = MedicalImageSerializer(many=True)
 
     class Meta:
         model = Patient
