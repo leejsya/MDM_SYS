@@ -13,15 +13,12 @@ class PatientAPI(generics.RetrieveUpdateDestroyAPIView):
     lookup_field = 'pid'
 
 
-class MedicalImagesAPI(mixins.ListModelMixin, mixins.CreateModelMixin, generics.GenericAPIView):
-    queryset = MedicalImage.objects.all()
+class MedicalImagesAPI(generics.ListCreateAPIView):
     serializer_class = MedicalImageSerializer
 
-    def get(self, request, *args, **kwargs):
-        return self.list(request, *args, **kwargs)
-
-    def post(self, request, *args, **kwargs):
-        return self.create(request, *args, **kwargs)
+    def get_queryset(self):
+        pid = self.kwargs['pid']
+        return MedicalImage.objects.filter(patient_id=pid)
 
 class MedicalImageAPI(generics.RetrieveUpdateDestroyAPIView):
     queryset = MedicalImage
