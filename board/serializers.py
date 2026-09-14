@@ -1,7 +1,7 @@
 from rest_framework import serializers
 from .models import Patient, MedicalImage
 
-# 등록된 patients의 리스트를 보여주는 serializer.
+# 등록된 patients의 리스트를 보여주는 기능을 위한 serializer.
 class PatientSerializer(serializers.ModelSerializer):
     class Meta:
         model = Patient
@@ -12,7 +12,7 @@ class PatientSerializer(serializers.ModelSerializer):
                   'registered_time'
         ]
 
-# image의 메타 정보를 보여주는 serializer.
+# image의 메타 정보를 보여주는 기능을 위한 serializer.
 class MedicalImageSerializer(serializers.ModelSerializer):
     class Meta:
         model = MedicalImage
@@ -23,7 +23,7 @@ class MedicalImageSerializer(serializers.ModelSerializer):
                   'description',
         ]
 
-# 특정 patient의 detail을 보여주는 serializer.
+# 특정 patient의 detail을 보여주는 기능을 위한 serializer.
 class PatientDetailSerializer(serializers.ModelSerializer):
     images = MedicalImageSerializer(many=True)  # 한 명의 환자는 여러 이미지를 가질 수 있음.
 
