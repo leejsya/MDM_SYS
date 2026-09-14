@@ -1,5 +1,5 @@
 from django.urls import path, include
-from .views import PatientsAPI, PatientAPI, MedicalImagesAPI, MedicalImageAPI, PatientDetailView
+from .views import PatientsAPI, MedicalImagesAPI, MedicalImageAPI, PatientDetailView
 
 urlpatterns = [
     path('patients/', PatientsAPI.as_view()),
