@@ -24,3 +24,4 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('board/', include('board.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    # MEDIA_URL로 시작하는 요청이 오면, MEDIA_ROOT 디렉터리에서 이미지 파일을 찾아 응답하도록 매핑.
